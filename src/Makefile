@@ -3,18 +3,18 @@
 
 # current dir
 SOURCEDIR := $(PWD)
-KERN_SOURCE = /usr/src/linux-source-`uname -r`
+DVB_SOURCE ?= /usr/src/linux-source-`uname -r`/drivers/media
 KDIR = /usr/src/linux-headers-`uname -r`
 
 KINS = /lib/modules
 
-ccflags-y := -I$(KERN_SOURCE)/drivers/media/dvb/dvb-usb/ \
-		-I$(KERN_SOURCE)/drivers/media/dvb/dvb-core/ \
-		-I$(KERN_SOURCE)/drivers/media/dvb-core/ \
-		-I$(KERN_SOURCE)/drivers/media/usb/dvb-usb/ \
-		-I$(KERN_SOURCE)/drivers/media/dvb/frontends/ \
-		-I$(KERN_SOURCE)/drivers/media/dvb-frontends/ \
-		-I$(KERN_SOURCE)/drivers/media/common/tuners/ \
+ccflags-y := -I$(DVB_SOURCE)/dvb/dvb-usb/ \
+		-I$(DVB_SOURCE)/dvb/dvb-core/ \
+		-I$(DVB_SOURCE)/dvb-core/ \
+		-I$(DVB_SOURCE)/usb/dvb-usb/ \
+		-I$(DVB_SOURCE)/dvb/frontends/ \
+		-I$(DVB_SOURCE)/dvb-frontends/ \
+		-I$(DVB_SOURCE)/common/tuners/ \
 		-I$(SOURCEDIR)/$(INCLUDE_EXTRA_DVB) 
 
 
