@@ -1,2 +1,18 @@
 Original Realtek RTL2832U chipset (DVB) Linux 3.5.0+ driver
 Rel 3.0
+
+
+Update of ambrosa's project supporting Kernel 3.3.0 and greater including 
+support for additional cards.
+
+(Original project https://github.com/ambrosa/DVB-Realtek-RTL2832U-2.2.2-10_tuner)
+
+
+Requires:
+	* Full Kernel Source
+
+Build:
+	cd src
+	make
+
+
