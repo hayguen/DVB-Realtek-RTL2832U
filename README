@@ -9,60 +9,60 @@ support for additional cards.
 
 
 Requires:
-	* GNU Make
-	* Build Essentials (kbuild)
+* GNU Make
+* Build Essentials (kbuild)
 
-	* Linux source (full kernel) OR 
-	* V4L-DVB Source & Kernel Headers
+* Linux source (full kernel) OR 
+* V4L-DVB Source & Kernel Headers
 
 
 To Build using Kernel Source
 ============================
 
-	Install the build environment and source
+Install the build environment and source
 
-	Ubuntu users follow the guide at:
-		https://help.ubuntu.com/community/Kernel/Compile)
+Ubuntu users follow the guide at:
+https://help.ubuntu.com/community/Kernel/Compile)
 
-	or
+or
 
-	$ sudo apt-get install build-essentials git 
-	$ sudo apt-get linux-headers-$(uname -r) linux-source-$(uname -r)
+$ sudo apt-get install build-essentials git 
+$ sudo apt-get linux-headers-$(uname -r) linux-source-$(uname -r)
 
-	Get the driver code
+Get the driver code
 
-	$ git clone git@github.com:jaredquinn/DVB-Realtek-RTL2832U.git
+$ git clone git@github.com:jaredquinn/DVB-Realtek-RTL2832U.git
 
-	Build it!
+Build it!
 
-	$ cd DVB-Realtek-RTL2832U/src
-	$ make
+$ cd DVB-Realtek-RTL2832U/src
+$ make
 
-	Install it
-	$ sudo make install
+Install it
+$ sudo make install
 
 To Build using the V4L-DVB source
 =================================
 
-	Get the V4L-DVB media-build source from http://www.linuxtv.org/wiki/index.php/How_to_Obtain,_Build_and_Install_V4L-DVB_Device_Drivers
+Get the V4L-DVB media-build source from http://www.linuxtv.org/wiki/index.php/How_to_Obtain,_Build_and_Install_V4L-DVB_Device_Drivers
 
-	Note: do not build the source; you only require the full source extracted 
-	and available.
+Note: do not build the source; you only require the full source extracted 
+and available.
 
-	Install the build environment:
+Install the build environment:
 
-	$ sudo apt-get install build-essentials git
+$ sudo apt-get install build-essentials git
 
-	Get the code
+Get the code
 
-	$ git clone git@github.com:jaredquinn/DVB-Realtek-RTL2832U.git
+$ git clone git@github.com:jaredquinn/DVB-Realtek-RTL2832U.git
 
-	Build it!
+Build it!
 
-	$ cd DVB-Realtek-RTL2832U/src
-	$ DVB_SOURCE=/usr/src/media_build/media/drivers/media make
+$ cd DVB-Realtek-RTL2832U/src
+$ DVB_SOURCE=/usr/src/media_build/media/drivers/media make
 
-	Note: Specify the location of the V4L drivers/media directory in the 
-	DVB_SOURCE environment variable.
+Note: Specify the location of the V4L drivers/media directory in the 
+DVB_SOURCE environment variable.
 
 
