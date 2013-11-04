@@ -754,7 +754,7 @@ rtl2832_GetSignalStrength(
 	)
 {
 	unsigned long FsmStage;
-	int IfAgc;
+	long IfAgc;
 
 
 
@@ -910,9 +910,9 @@ rtl2832_GetSnrDb(
 
 	static const long SnrDbNumConst[DVBT_CONSTELLATION_NUM][DVBT_HIERARCHY_NUM] =
 	{
-		{122880,	122880,		122880,		122880,		},
-		{146657,	146657,		156897,		171013,		},
-		{167857,	167857,		173127,		181810,		},
+		{122880,	122880,		122880,		122880,	  },
+		{146657,	146657,		156897,		171013,	  },
+		{167857,	167857,		173127,		181810,	  },
 	};
 
 	long Var;
@@ -964,8 +964,7 @@ rtl2832_GetSnrDb(
 	
 	// Set SNR dB denominator.
 	*pSnrDbDen = RTL2832_SNR_DB_DEN;
-
-
+	
 	return FUNCTION_SUCCESS;
 
 

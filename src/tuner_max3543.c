@@ -654,7 +654,7 @@ int MAX3543_Init(TUNER_MODULE *pTuner)
 	pExtra->denominator = pExtra->XTALREF * 4 * pExtra->LOSCALE;   
 
    /* The fracscale is used to calculate the fractional remainder of the N+FractionalN ratio.  */
-	pExtra->fracscale = 2147483648/pExtra->denominator;
+	pExtra->fracscale = 2147483648U/pExtra->denominator;
 
 
 //   Note: Set standard mode, channel bandwith, and RF frequency in other functions.
@@ -1367,7 +1367,7 @@ int MAX3543_ReadROM(TUNER_MODULE *pTuner)
 		IRHR and CFSET constants.  
 		This is to be called after the Max3543 powers up.              
 	*/
-	UINT_16 rom_data[11];
+	UINT_16 rom_data[12];
 	UINT_16 i;
 
 	MAX3543_EXTRA_MODULE *pExtra;

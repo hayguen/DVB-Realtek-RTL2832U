@@ -1,5 +1,13 @@
-
 History of Realtek RTL2832U DVB-T Linux Driver:
+
+Ver 3.0.0  update build system to support newer kbuild 
+           update Makefile to include new paths for dvb-system
+
+		   add support for USB 0413:6f12 Leadtek Winfast DTV2000-PLUS from OpenPLI
+		   add support for USB 0ccd:00d7 Terrtec Cinergy T Stick+ from OpenPLI
+
+========================================================================
+
 Ver 2.2.2  a. support rc function
 
 Ver 2.2.1  a.PID/VID

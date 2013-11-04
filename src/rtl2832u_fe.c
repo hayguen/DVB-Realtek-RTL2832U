@@ -1,4 +1,4 @@
-
+#include <linux/version.h>
 #include "rtl2832u_fe.h"
 #include "rtl2832u_io.h"
 #include "rtl2832u.h"
@@ -495,7 +495,7 @@ usb_init_bulk_setting(
 		 	goto error;
 		}
 
-		deb_info("HIGH SPEED\n");
+		deb_force("RTL2832U %s : USB2.0 HIGH SPEED (480Mb/s)\n", __FUNCTION__);
 	}
 	else 
     	{
@@ -511,7 +511,7 @@ usb_init_bulk_setting(
 		 	goto error;
 		}
 		
-		deb_info("FULL SPEED\n");
+		deb_force("RTL2832U %s : USB1.1 FULL SPEED (12Mb/s)\n", __FUNCTION__);
 	}	
 
 	deb_info(" -%s \n", __FUNCTION__);
@@ -836,21 +836,21 @@ check_tuner_type(
 	{
 	 	p_state->tuner_type = RTL2832_TUNER_TYPE_MT2266;
 
-		deb_info(" -%s : MT2266 tuner on board...\n", __FUNCTION__);
+		deb_force("RTL2832U %s : MT2266 tuner on board...\n", __FUNCTION__);
 	}
 	else if ((!read_tuner_id_register(p_state, FC2580_TUNER_ADDR, FC2580_OFFSET,  tuner_id_data, LEN_1_BYTE)) &&
 			((tuner_id_data[0]&(~BIT7)) == FC2580_CHECK_VAL ))
 	{
 		p_state->tuner_type = RTL2832_TUNER_TYPE_FC2580;
 
-		deb_info(" -%s : FC2580 tuner on board...\n", __FUNCTION__);
+		deb_force("RTL2832U %s : FC2580 tuner on board...\n", __FUNCTION__);
 	}
 	else if(( !read_tuner_id_register(p_state, MT2063_TUNER_ADDR, MT2063_CHECK_OFFSET,  tuner_id_data, LEN_1_BYTE)) &&
 			( tuner_id_data[0]==MT2063_CHECK_VALUE || tuner_id_data[0]==MT2063_CHECK_VALUE_2))
 	{
 		p_state->tuner_type = RTL2832_TUNER_TYPE_MT2063;
 
-		deb_info(" -%s : MT2063 tuner on board...\n", __FUNCTION__);
+		deb_force("RTL2832U %s : MT2063 tuner on board...\n", __FUNCTION__);
 
 	}
 	else if(( !read_tuner_id_register(p_state, MAX3543_TUNER_ADDR, MAX3543_CHECK_OFFSET,  tuner_id_data, LEN_1_BYTE)) &&
@@ -858,7 +858,7 @@ check_tuner_type(
 	{
 		p_state->tuner_type = RTL2832_TUNER_TYPE_MAX3543;
 
-		deb_info(" -%s : MAX3543 tuner on board...\n", __FUNCTION__);
+		deb_force("RTL2832U %s : MAX3543 tuner on board...\n", __FUNCTION__);
 
 	}
 	else if ((!read_tuner_id_register(p_state, TUA9001_TUNER_ADDR, TUA9001_OFFSET,  tuner_id_data, LEN_2_BYTE)) &&
@@ -866,34 +866,34 @@ check_tuner_type(
 	{
 		p_state->tuner_type = RTL2832_TUNER_TYPE_TUA9001;
 			
-		deb_info(" -%s : TUA9001 tuner on board...\n", __FUNCTION__);
+		deb_force("RTL2832U %s : TUA9001 tuner on board...\n", __FUNCTION__);
 	}
 	else	 if ((!check_mxl5007t_chip_version(p_state, &chip_version)) &&
 			(chip_version == MXL5007T_CHECK_VALUE) )
 	{
 		p_state->tuner_type = RTL2832_TUNER_TYPE_MXL5007T;
 
-		deb_info(" -%s : MXL5007T tuner on board...\n", __FUNCTION__);
+		deb_force("RTL2832U %s : MXL5007T tuner on board...\n", __FUNCTION__);
 	}
 	else if ((!read_tuner_id_register(p_state, FC0012_BASE_ADDRESS , FC0012_CHECK_ADDRESS,  tuner_id_data, LEN_1_BYTE)) &&
 			(tuner_id_data[0] == FC0012_CHECK_VALUE))
 	{
 		p_state->tuner_type = RTL2832_TUNER_TYPE_FC0012;
 				
-		deb_info(" -%s : FC0012 tuner on board...\n", __FUNCTION__);	
+		deb_force("RTL2832U %s : FC0012 tuner on board...\n", __FUNCTION__);	
 	}
 	else	if((!read_tuner_id_register(p_state, E4000_BASE_ADDRESS, E4000_CHECK_ADDRESS, tuner_id_data, LEN_1_BYTE)) && 
 			(tuner_id_data[0] == E4000_CHECK_VALUE))	
 	{
 		p_state->tuner_type = RTL2832_TUNER_TYPE_E4000;
-		deb_info(" -%s : E4000 tuner on board...\n", __FUNCTION__);
+		deb_force("RTL2832U %s : E4000 tuner on board...\n", __FUNCTION__);
 	}
 	else if(( !read_tuner_id_register(p_state, TDA18272_TUNER_ADDR, TDA18272_CHECK_OFFSET,  tuner_id_data, LEN_2_BYTE)) &&
 			( (tuner_id_data[0]==TDA18272_CHECK_VALUE1) && (tuner_id_data[1]==TDA18272_CHECK_VALUE2)))
 	{
 		p_state->tuner_type = RTL2832_TUNER_TYPE_TDA18272;
 
-		deb_info(" -%s : Tda18272 tuner on board...\n", __FUNCTION__);
+		deb_force("RTL2832U %s : Tda18272 tuner on board...\n", __FUNCTION__);
 
 	}	
 	else if ((!read_tuner_id_register(p_state, FC0013_BASE_ADDRESS , FC0013_CHECK_ADDRESS,  tuner_id_data, LEN_1_BYTE)) &&
@@ -901,13 +901,13 @@ check_tuner_type(
 	{
 		p_state->tuner_type = RTL2832_TUNER_TYPE_FC0013;
 				
-		deb_info(" -%s : FC0013 tuner on board...\n", __FUNCTION__);	
+		deb_force("RTL2832U %s : FC0013 tuner on board...\n", __FUNCTION__);	
 	}	
 	else
 	{
 		p_state->tuner_type = RTL2832_TUNER_TYPE_UNKNOWN;
 			
-		deb_info(" -%s : Unknown tuner on board...\n", __FUNCTION__);	
+		deb_force("RTL2832U %s : ERROR Unknown tuner on board...\n", __FUNCTION__);	
 		goto error;
 	}
 
@@ -978,7 +978,11 @@ check_dvbt_reset_parameters(
 
 	struct rtl2832_state*	p_state,
 	unsigned long			frequency,
-	enum fe_bandwidth	bandwidth,	
+#ifdef V4L2_ONLY_DVB_V5
+	unsigned long		bandwidth_hz,
+#else
+	enum fe_bandwidth	bandwidth,
+#endif	
 	int*					reset_needed)
 {
 
@@ -988,8 +992,12 @@ check_dvbt_reset_parameters(
 	deb_info(" +%s \n", __FUNCTION__);
 
 	*reset_needed = 1;	 //3initialize "reset_needed"
-	
+
+#ifdef V4L2_ONLY_DVB_V5
+	if( (p_state->current_frequency == frequency) && (p_state->current_bandwidth_hz == bandwidth_hz) )
+#else
 	if( (p_state->current_frequency == frequency) && (p_state->current_bandwidth == bandwidth) )
+#endif	
 	{
 		if( p_state->pNim->IsSignalLocked(p_state->pNim, &is_lock) ) goto error;
 		diff_ms = 0;		
@@ -1498,7 +1506,76 @@ rtl2832_sleep(
 }
 
 
+#ifdef V4L2_ONLY_DVB_V5
+static int
+rtl2840_set_parameters(
+	struct dvb_frontend*	fe)
+{
+	struct dtv_frontend_properties		*param = &fe->dtv_property_cache;
+	struct rtl2832_state				*p_state = fe->demodulator_priv;
+	unsigned long						frequency = param->frequency;
 
+	DVBT_DEMOD_MODULE				*pDemod2832;
+	int								QamMode;
+
+	deb_info(" +%s \n", __FUNCTION__);
+
+	if(p_state->demod_type == RTL2840 && p_state->pNim2840 == NULL )
+	{
+		deb_info(" %s pNim2840 = NULL \n", __FUNCTION__);
+
+		return -1;
+	 }
+
+
+	deb_info(" +%s Freq=%lu , Symbol rate=%u, QAM=%u\n", __FUNCTION__, frequency, param->symbol_rate, param->modulation);
+
+	pDemod2832 = p_state->pNim->pDemod;
+
+	switch(param->modulation)
+	{
+		case QPSK :		QamMode = QAM_QAM_4;		break;
+		case QAM_16 :	QamMode = QAM_QAM_16;		break;
+		case QAM_32 :	QamMode = QAM_QAM_32;		break;
+		case QAM_64 :	QamMode = QAM_QAM_64;		break;
+		case QAM_128 :	QamMode = QAM_QAM_128;		break;
+		case QAM_256 :	QamMode = QAM_QAM_256;		break;		
+
+		case QAM_AUTO :
+		default:
+		deb_info(" XXX %s  : unknown QAM \n", __FUNCTION__);
+		goto  mutex_error;
+		break;
+			
+	}
+
+	if( mutex_lock_interruptible(&p_state->i2c_repeater_mutex) )	goto mutex_error;
+
+	// Enable demod DVBT_IIC_REPEAT.
+	if(pDemod2832->SetRegBitsWithPage(pDemod2832,  DVBT_IIC_REPEAT, 0x1) )   goto error;	
+	
+	p_state->pNim2840->SetParameters(p_state->pNim2840, frequency, QamMode, param->symbol_rate, QAM_ALPHA_0P15);
+
+	// Disable demod DVBT_IIC_REPEAT.
+	if(pDemod2832->SetRegBitsWithPage(pDemod2832, DVBT_IIC_REPEAT, 0x0))  goto error;
+
+	mutex_unlock(&p_state->i2c_repeater_mutex);	
+
+	deb_info(" -%s \n", __FUNCTION__);
+
+	return 0;
+
+error:
+	mutex_unlock(&p_state->i2c_repeater_mutex);	
+
+mutex_error:
+
+	deb_info(" -XXX %s \n", __FUNCTION__);
+
+	return 1;
+
+}
+#else
 static int
 rtl2840_set_parameters(
 	struct dvb_frontend*	fe,
@@ -1569,9 +1646,258 @@ mutex_error:
 	return 1;
 
 }
+#endif
+
+
+#ifdef V4L2_ONLY_DVB_V5
+static int
+rtl2832_set_parameters(
+	struct dvb_frontend*	fe)
+{
+	struct dtv_frontend_properties	*param = &fe->dtv_property_cache;
+	struct rtl2832_state			*p_state = fe->demodulator_priv;
+
+	unsigned long					frequency = param->frequency;
+	int							bandwidth_mode;
+	int							is_signal_present;
+	int							reset_needed;
+	unsigned char                             data;
+	int							int_data; 
+
+       
+       DTMB_DEMOD_MODULE *           pDemod2836;
+	DVBT_DEMOD_MODULE *           pDemod2832;
 
 
 
+       if( p_state->pNim == NULL)
+       {
+		deb_info(" %s pNim = NULL \n", __FUNCTION__);
+		return -1;
+       }
+
+	if(p_state->demod_type == RTL2836 && p_state->pNim2836 == NULL )
+	{
+		deb_info(" %s pNim2836 = NULL \n", __FUNCTION__);
+		return -1;
+	 }
+
+	if( mutex_lock_interruptible(&p_state->i2c_repeater_mutex) )	goto mutex_error;
+	
+	deb_info(" +%s frequency = %lu , bandwidth = %u\n", __FUNCTION__, frequency , param->bandwidth_hz);
+
+	if(p_state->demod_type == RTL2832)
+	{
+		if ( check_dvbt_reset_parameters( p_state , frequency , param->bandwidth_hz, &reset_needed) ) goto error;
+
+		if( reset_needed == 0 )
+		{
+			mutex_unlock(&p_state->i2c_repeater_mutex);		
+			return 0;
+		}
+
+		switch (param->bandwidth_hz) 
+	      {
+		case 6000000:
+		bandwidth_mode = DVBT_BANDWIDTH_6MHZ; 	
+		break;
+		
+		case 7000000:
+		bandwidth_mode = DVBT_BANDWIDTH_7MHZ;
+		break;
+		
+		case 8000000:
+		default:
+		bandwidth_mode = DVBT_BANDWIDTH_8MHZ;	
+		break;
+	       }
+	       
+	       	//add by Dean
+	        if (p_state->tuner_type == RTL2832_TUNER_TYPE_FC0012 )
+	        {
+	        
+	   		if( gpio6_output_enable_direction(p_state) )	goto error;	    
+	   		
+	   			
+			if (frequency > 300000000)
+			{
+				
+				read_usb_sys_register(p_state, RTD2831_RMAP_INDEX_SYS_GPIO_OUTPUT_VAL, &int_data);
+				int_data |= BIT6; // set GPIO6 high
+				write_usb_sys_register(p_state, RTD2831_RMAP_INDEX_SYS_GPIO_OUTPUT_VAL, int_data);	
+				deb_info("  %s : Tuner :FC0012 V-band (GPIO6 high)\n", __FUNCTION__);		
+			}
+			else
+			{
+	
+				read_usb_sys_register(p_state, RTD2831_RMAP_INDEX_SYS_GPIO_OUTPUT_VAL, &int_data);
+				int_data &= (~BIT6); // set GPIO6 low	
+				write_usb_sys_register(p_state, RTD2831_RMAP_INDEX_SYS_GPIO_OUTPUT_VAL, int_data);	
+				deb_info("  %s : Tuner :FC0012 U-band (GPIO6 low)\n", __FUNCTION__);	
+				
+			}
+		}
+		
+
+	
+			
+		
+		if ( p_state->pNim->SetParameters( p_state->pNim,  frequency , bandwidth_mode ) ) goto error; 
+
+		if ( p_state->pNim->IsSignalPresent( p_state->pNim, &is_signal_present) ) goto error;
+		deb_info("  %s : ****** Signal Present = %d ******\n", __FUNCTION__, is_signal_present);
+		
+		
+
+
+		p_state->is_frequency_valid = 1;
+
+		
+	}
+	else if(p_state->demod_type == RTL2836)
+	{
+		pDemod2836 =  p_state->pNim2836->pDemod;
+		pDemod2832 = p_state->pNim->pDemod;
+
+		//if ( check_dtmb_reset_parameters( p_state , frequency ,  &reset_needed) ) goto error;
+		//if( reset_needed == 0 )
+		//{
+		//	mutex_unlock(&p_state->i2c_repeater_mutex);		
+		//	return 0;
+		//}
+		
+		deb_info("%s:  RTL2836 Hold Stage=9\n",__FUNCTION__);
+		if(read_rtl2836_demod_register(p_state->d, RTL2836_DEMOD_ADDR,  PAGE_3,  0xf8,  &data, LEN_1_BYTE))  goto error;
+		data &=(~BIT_0_MASK);  //reset Reg_present
+		data &=(~BIT_1_MASK);  //reset Reg_lock
+		if(write_rtl2836_demod_register(p_state->d, RTL2836_DEMOD_ADDR,  PAGE_3,  0xf8,  &data, LEN_1_BYTE))  goto error;
+		
+		//3 + RTL2836 Hold Stage=9
+		data = 0x29;
+		if(write_rtl2836_demod_register(p_state->d, RTL2836_DEMOD_ADDR,  PAGE_3,  0x4d,  &data, LEN_1_BYTE))  goto error;
+		
+		data = 0xA5;
+		if(write_rtl2836_demod_register(p_state->d, RTL2836_DEMOD_ADDR,  PAGE_3,  0x4e,  &data, LEN_1_BYTE))  goto error;
+		
+		data = 0x94;
+		if(write_rtl2836_demod_register(p_state->d, RTL2836_DEMOD_ADDR,  PAGE_3,  0x4f,  &data, LEN_1_BYTE))  goto error;
+		//3 -RTL2836 Hold Stage=9
+	
+
+		// Enable demod DVBT_IIC_REPEAT.
+	       if(pDemod2832->SetRegBitsWithPage(pDemod2832,  DVBT_IIC_REPEAT, 0x1) )   goto error;
+
+		if ( p_state->pNim2836->SetParameters( p_state->pNim2836,  frequency)) 	goto error; //no bandwidth setting	
+
+		// Disable demod DVBT_IIC_REPEAT.
+	       if(pDemod2832->SetRegBitsWithPage(pDemod2832, DVBT_IIC_REPEAT, 0x0))  goto error;
+
+		if(pDemod2832->SoftwareReset(pDemod2832))//2832 swreset
+			goto error;
+
+		p_state->is_frequency_valid = 1;
+		if( rtl2836_scan_procedure(p_state))  goto error; 
+	}
+
+
+//#if(UPDATE_FUNC_ENABLE_2832 == 0)
+	//3 FC0012/E4000 update begin --
+	if(p_state->demod_type == RTL2832 && (p_state->tuner_type == RTL2832_TUNER_TYPE_FC0012 
+										|| p_state->tuner_type == RTL2832_TUNER_TYPE_E4000
+										|| p_state->tuner_type == RTL2832_TUNER_TYPE_FC0013))
+	{
+              // Enable demod DVBT_IIC_REPEAT.
+		if(p_state->pNim->pDemod->SetRegBitsWithPage(p_state->pNim->pDemod, DVBT_IIC_REPEAT, 0x1) != FUNCTION_SUCCESS)
+			goto error;
+ 
+		if(p_state->tuner_type == RTL2832_TUNER_TYPE_FC0012)//fc0012
+		{
+			if(rtl2832_fc0012_UpdateTunerLnaGainWithRssi(p_state->pNim) != FUNCTION_SUCCESS)
+				goto error;
+		}
+		else if(p_state->tuner_type == RTL2832_TUNER_TYPE_E4000)//e4000
+		{
+			if(rtl2832_e4000_UpdateTunerMode(p_state->pNim) != FUNCTION_SUCCESS)
+				goto error;
+		}
+		else if(p_state->tuner_type == RTL2832_TUNER_TYPE_FC0013) //fc0013
+		{
+			if(rtl2832_fc0013_UpdateTunerLnaGainWithRssi(p_state->pNim) != FUNCTION_SUCCESS)
+				goto error;
+		}
+		
+		// Disable demod DVBT_IIC_REPEAT.
+		if(p_state->pNim->pDemod->SetRegBitsWithPage(p_state->pNim->pDemod, DVBT_IIC_REPEAT, 0x0) != FUNCTION_SUCCESS)
+			goto error;
+                
+
+		deb_info("%s : fc0012/e4000 update first\n", __FUNCTION__);
+
+		msleep(50);
+ 
+		if(p_state->pNim->pDemod->SetRegBitsWithPage(p_state->pNim->pDemod, DVBT_IIC_REPEAT, 0x1) != FUNCTION_SUCCESS)
+			goto error;
+
+		// Update tuner LNA gain with RSSI.
+		if(p_state->tuner_type == RTL2832_TUNER_TYPE_FC0012)//fc0012
+		{
+			if(rtl2832_fc0012_UpdateTunerLnaGainWithRssi(p_state->pNim) != FUNCTION_SUCCESS)
+				goto error;
+		}
+		else if (p_state->tuner_type == RTL2832_TUNER_TYPE_E4000)//e4000
+		{
+			if(rtl2832_e4000_UpdateTunerMode(p_state->pNim) != FUNCTION_SUCCESS)
+				goto error;
+		}
+		else if(p_state->tuner_type == RTL2832_TUNER_TYPE_FC0013) //fc0013
+		{
+			if(rtl2832_fc0013_UpdateTunerLnaGainWithRssi(p_state->pNim) != FUNCTION_SUCCESS)
+				goto error;
+		}
+			
+		// Disable demod DVBT_IIC_REPEAT.
+		if(p_state->pNim->pDemod->SetRegBitsWithPage(p_state->pNim->pDemod, DVBT_IIC_REPEAT, 0x0) != FUNCTION_SUCCESS)
+			goto error;
+
+		deb_info("%s : fc0012/e4000 update 2nd\n", __FUNCTION__);
+	}
+	//3 FC0012/E4000 update end --
+      
+//#endif
+	
+	p_state->current_frequency = frequency;	
+	p_state->current_bandwidth_hz = param->bandwidth_hz;
+
+	deb_info(" -%s \n", __FUNCTION__);
+
+	mutex_unlock(&p_state->i2c_repeater_mutex);	
+
+	return 0;
+
+error:	
+	mutex_unlock(&p_state->i2c_repeater_mutex);	
+	
+mutex_error:	
+	p_state->current_frequency = 0;
+	p_state->current_bandwidth_hz = 0;
+	p_state->is_frequency_valid = 0;
+	deb_info(" -%s  error end\n", __FUNCTION__);
+
+	return -1;
+	
+}
+
+
+
+static int 
+rtl2832_get_parameters(
+	struct dvb_frontend*	fe)
+{
+	//struct rtl2832_state* p_state = fe->demodulator_priv;
+	return 0;
+}
+
+#else
 
 static int
 rtl2832_set_parameters(
@@ -1689,8 +2015,8 @@ rtl2832_set_parameters(
 		//	mutex_unlock(&p_state->i2c_repeater_mutex);		
 		//	return 0;
 		//}
-
-              deb_info(("%s:  RTL2836 Hold Stage=9\n"),__FUNCTION__);	
+		
+		deb_info("%s:  RTL2836 Hold Stage=9\n",__FUNCTION__);
 		if(read_rtl2836_demod_register(p_state->d, RTL2836_DEMOD_ADDR,  PAGE_3,  0xf8,  &data, LEN_1_BYTE))  goto error;
 		data &=(~BIT_0_MASK);  //reset Reg_present
 		data &=(~BIT_1_MASK);  //reset Reg_lock
@@ -1790,7 +2116,7 @@ rtl2832_set_parameters(
 //#endif
 	
 	p_state->current_frequency = frequency;	
-	p_state->current_bandwidth = p_ofdm_param->bandwidth;	
+	p_state->current_bandwidth = p_ofdm_param->bandwidth;
 
 	deb_info(" -%s \n", __FUNCTION__);
 
@@ -1821,6 +2147,8 @@ rtl2832_get_parameters(
 	//struct rtl2832_state* p_state = fe->demodulator_priv;
 	return 0;
 }
+#endif
+
 
 
 static int 
@@ -1937,6 +2265,8 @@ rtl2832_read_ber(
 	struct rtl2832_state* p_state = fe->demodulator_priv;
 	unsigned  long ber_num, ber_dem;
 
+	deb_info(" +%s\n", __FUNCTION__);
+
 	if( p_state->pNim== NULL)
 	{
 		deb_info(" %s pNim = NULL \n", __FUNCTION__);
@@ -1948,7 +2278,8 @@ rtl2832_read_ber(
 
 	if(p_state->demod_type == RTL2832)
 	{
-		if( p_state->pNim->GetBer( p_state->pNim , &ber_num , &ber_dem) ) 
+	
+	if( p_state->pNim->GetBer( p_state->pNim , &ber_num , &ber_dem) ) 
 		{
 			*ber = 19616;
 			goto error;
@@ -1993,13 +2324,14 @@ rtl2832_read_ber(
 	}
 
 	mutex_unlock(&p_state->i2c_repeater_mutex);
-		
+	deb_info(" -%s\n", __FUNCTION__);
 	return 0;
 	
 error:
 	mutex_unlock(&p_state->i2c_repeater_mutex);
 	
 mutex_error:
+	deb_info(" -%s ERROR\n", __FUNCTION__);
 	return -1;
 }
 static int fc0012_get_signal_strength(struct rtl2832_state	*p_state,unsigned long *strength)
@@ -2016,6 +2348,7 @@ static int fc0012_get_signal_strength(struct rtl2832_state	*p_state,unsigned lon
 	TUNER_MODULE *pTuner=NULL;
 	DVBT_DEMOD_MODULE *pDemod = NULL;	
 	
+	deb_info(" +%s\n", __FUNCTION__);
 
 	if(p_state->pNim== NULL)
 	{
@@ -2080,8 +2413,10 @@ static int fc0012_get_signal_strength(struct rtl2832_state	*p_state,unsigned lon
 			*strength=0;
 	else
 			*strength = ((Power+45)*100)/50+100;
+	deb_info(" -%s\n", __FUNCTION__);
 	return 0;
 error:
+	deb_info(" -%s ERROR\n", __FUNCTION__);
 	return -1;	
 }
 int 
@@ -2091,6 +2426,8 @@ rtl2832_read_signal_strength(
 {
 	struct rtl2832_state* p_state = fe->demodulator_priv;
 	unsigned long		_strength;
+	
+	deb_info(" +%s\n", __FUNCTION__);
 
 	if( p_state->pNim== NULL)
 	{
@@ -2101,77 +2438,102 @@ rtl2832_read_signal_strength(
 	if( mutex_lock_interruptible(&p_state->i2c_repeater_mutex) )	goto mutex_error;
 
 
-       if(p_state->tuner_type == RTL2832_TUNER_TYPE_FC0012)	
+	if(p_state->tuner_type == RTL2832_TUNER_TYPE_FC0012)	
 	{
-	  if (fc0012_get_signal_strength(p_state,&_strength))	
-	  {
+		if (fc0012_get_signal_strength(p_state,&_strength))	
+		{
 			*strength = 0;
 			goto error;	  	
-	  }
+		}
 
-
-	   *strength = (_strength<<8) | _strength;
-          deb_info("  %s : use FC0012 strength = 0x%x(%d) \n", __FUNCTION__, *strength,*strength);	  		
+#if 0
+		/* this is wrong, as _strength is in the range [0,100] */
+		*strength = (_strength<<8) | _strength;
+#else
+		/* scale *strength in the proper range [0,0xffff] */
+		*strength = (_strength * 0xffff) / 100;
+#endif
+		deb_info("  %s : use FC0012 strength = 0x%x(%d) \n", __FUNCTION__, *strength,*strength);	  		
 	}
-       else if(p_state->demod_type == RTL2832)
-       {
-     	
+	else if(p_state->demod_type == RTL2832)
+	{
+
        		if( p_state->pNim->GetSignalStrength( p_state->pNim ,  &_strength) ) 
 		{
 			*strength = 0;
 			goto error;
 		}
 	
+#if 0
+		/* this is wrong, as _strength is in the range [0,100] */
 		*strength = (_strength<<8) | _strength;
+#else
+		/* scale *strength in the proper range [0,0xffff] */
+		*strength = (_strength * 0xffff) / 100;
+#endif
 
 		deb_info("  %s : RTL2832 strength = 0x%x \n", __FUNCTION__, *strength);		
         }
 	else if(p_state->demod_type == RTL2836)
         {
 		if(p_state->pNim2836 == NULL)
-              {
+		{
 			deb_info(" %s pNim2836 = NULL \n", __FUNCTION__);
 			goto error;
-               }
-                
-              if(p_state->pNim2836->pDemod->GetSignalStrength( p_state->pNim2836->pDemod ,  &_strength))// if(p_state->pNim2836->GetSignalStrength( p_state->pNim2836 ,  &_strength) ) 
+		}
+
+		if(p_state->pNim2836->pDemod->GetSignalStrength( p_state->pNim2836->pDemod ,  &_strength))// if(p_state->pNim2836->GetSignalStrength( p_state->pNim2836 ,  &_strength) ) 
 		{
 			*strength = 0;
 			goto error;
 		}
 	
+#if 0
+		/* this is wrong, as _strength is in the range [0,100] */
 		*strength = (_strength<<8) | _strength;
+#else
+		/* scale *strength in the proper range [0,0xffff] */
+		*strength = (_strength * 0xffff) / 100;
+#endif
 
 		deb_info("  %s : RTL2836 strength = 0x%x \n", __FUNCTION__, *strength);	
         }
 	else if(p_state->demod_type == RTL2840)
 	{
 		if(p_state->pNim2840 == NULL)
-              {
+		{
 			deb_info(" %s pNim2840 = NULL \n", __FUNCTION__);
 			goto error;
-               }
-                
-              if(p_state->pNim2840->pDemod->GetSignalStrength( p_state->pNim2840->pDemod ,  &_strength))// if(p_state->pNim2836->GetSignalStrength( p_state->pNim2836 ,  &_strength) ) 
+		}
+
+		if(p_state->pNim2840->pDemod->GetSignalStrength( p_state->pNim2840->pDemod ,  &_strength))// if(p_state->pNim2836->GetSignalStrength( p_state->pNim2836 ,  &_strength) ) 
 		{
 			*strength = 0;
 			goto error;
 		}
-	
+
+#if 0
+		/* this is wrong, as _strength is in the range [0,100] */
 		*strength = (_strength<<8) | _strength;
+#else
+		/* scale *strength in the proper range [0,0xffff] */
+		*strength = (_strength * 0xffff) / 100;
+#endif
 
 		deb_info("  %s : RTL2840 strength = 0x%x \n", __FUNCTION__, *strength);	
 	}
 	
 
 	mutex_unlock(&p_state->i2c_repeater_mutex);
-	
+
+	deb_info(" -%s\n", __FUNCTION__);
 	return 0;
 	
 error:
 	mutex_unlock(&p_state->i2c_repeater_mutex);
 	
 mutex_error:
+	deb_info(" -%s ERROR\n", __FUNCTION__);
 	return -1;
 }
 
@@ -2184,6 +2546,7 @@ rtl2832_read_signal_quality(
 	struct rtl2832_state* p_state = fe->demodulator_priv;
 	unsigned long		_quality;
 
+	deb_info(" +%s\n", __FUNCTION__);
 	if( p_state->pNim== NULL)
 	{
 		deb_info(" %s pNim = NULL \n", __FUNCTION__);
@@ -2234,13 +2597,14 @@ rtl2832_read_signal_quality(
 	deb_info("  %s : quality = 0x%x \n", __FUNCTION__, *quality);	
 
 	mutex_unlock(&p_state->i2c_repeater_mutex);
-	
+	deb_info(" -%s\n", __FUNCTION__);
 	return 0;
 	
 error:
 	mutex_unlock(&p_state->i2c_repeater_mutex);
 	
 mutex_error:
+	deb_info(" -%s ERROR\n", __FUNCTION__);
 	return -1;	
 }
 
@@ -2255,7 +2619,17 @@ rtl2832_read_snr(
 	long snr_num = 0;
 	long snr_dem = 0;
 	long _snr= 0;
+	int pConstellation;
+	int pHierarchy;
+	int pCodeRateLp;
+	int pCodeRateHp;
+	int pGuardInterval;
+	int pFftMode;
 
+	// max dB for each constellation
+	static const int snrMaxDb[DVBT_CONSTELLATION_NUM] = {  23,  26,  29, };
+
+	deb_info(" +%s\n", __FUNCTION__);
 	if( p_state->pNim== NULL)
 	{
 		deb_info(" %s pNim = NULL \n", __FUNCTION__);
@@ -2272,12 +2646,24 @@ rtl2832_read_snr(
 			goto error;
 		}
 
-		_snr = snr_num / snr_dem;
-
-		if( _snr < 0 ) _snr = 0;
+		if (dvb_usb_rtl2832u_snrdb == 0) 
+		{
+			p_state->pNim->GetTpsInfo(p_state->pNim, &pConstellation, &pHierarchy, &pCodeRateLp, &pCodeRateHp, &pGuardInterval, &pFftMode);
+			_snr = ((snr_num / snr_dem) * 0xffff) / snrMaxDb[pConstellation];
+			if ( _snr > 0xffff ) _snr = 0xffff;
+			if ( _snr < 0 ) _snr = 0;
+		}
+		else 
+		{
+			_snr = snr_num / snr_dem;
+			if( _snr < 0 ) _snr = 0;
+		}
 
 		*snr = _snr;
-        }
+
+		deb_info(" %s SNR_NUM=%lu  SNR_DEM=%lu  SNR=%u  Costellation=%u\n", __FUNCTION__,snr_num,snr_dem,*snr,pConstellation);			
+	}
+
 	else if(p_state->demod_type == RTL2836)
 	{
         	if( p_state->pNim2836 == NULL)
@@ -2320,6 +2706,7 @@ error:
 	mutex_unlock(&p_state->i2c_repeater_mutex);
 	
 mutex_error:
+	deb_info(" -%s ERROR\n", __FUNCTION__);
 	return -1;
 }
 
@@ -2424,17 +2811,22 @@ struct dvb_frontend* rtl2832u_fe_attach(struct dvb_usb_device *d)
 	{
 		case RTL2832:
 			memcpy(&p_state->frontend.ops, &rtl2832_dvbt_ops, sizeof(struct dvb_frontend_ops));
+#ifndef V4L2_ONLY_DVB_V5
 			memset(&p_state->fep, 0, sizeof(struct dvb_frontend_parameters));
-			
+#endif
 		break;
 		case RTL2836:	
 			memcpy(&p_state->frontend.ops, &rtl2836_dtmb_ops, sizeof(struct dvb_frontend_ops));
+#ifndef V4L2_ONLY_DVB_V5
 			memset(&p_state->fep, 0, sizeof(struct dvb_frontend_parameters));
+#endif
 		break;
 
 		case RTL2840:
 			memcpy(&p_state->frontend.ops, &rtl2840_dvbc_ops, sizeof(struct dvb_frontend_ops));
+#ifndef V4L2_ONLY_DVB_V5
 			memset(&p_state->fep, 0, sizeof(struct dvb_frontend_parameters));
+#endif
 		break;	
 	}	
 	
@@ -2468,9 +2860,15 @@ error:
 
 
 static struct dvb_frontend_ops rtl2840_dvbc_ops = {
+#ifdef V4L2_ONLY_DVB_V5
+    /* TODO: check if rtl2840 supports also SYS_DVBC_ANNEX_C */
+    .delsys = { SYS_DVBC_ANNEX_A, SYS_DVBC_ANNEX_C },
+#endif
     .info = {
         .name               = "Realtek DVB-C RTL2840 ",
+#ifndef V4L2_ONLY_DVB_V5
         .type               = FE_QAM,
+#endif
         .frequency_min      = 50000000,
         .frequency_max      = 862000000,
         .frequency_stepsize = 166667,
@@ -2504,9 +2902,14 @@ static struct dvb_frontend_ops rtl2840_dvbc_ops = {
 
 
 static struct dvb_frontend_ops rtl2832_dvbt_ops = {
+#ifdef V4L2_ONLY_DVB_V5
+    .delsys = { SYS_DVBT },
+#endif
     .info = {
         .name               = "Realtek DVB-T RTL2832",
+#ifndef V4L2_ONLY_DVB_V5
         .type               = FE_OFDM,
+#endif
         .frequency_min      = 50000000,
         .frequency_max      = 862000000,
         .frequency_stepsize = 166667,
@@ -2537,9 +2940,14 @@ static struct dvb_frontend_ops rtl2832_dvbt_ops = {
 };
 
 static struct dvb_frontend_ops rtl2836_dtmb_ops = {
+#ifdef V4L2_ONLY_DVB_V5
+    .delsys = { SYS_DMBTH },
+#endif
     .info = {
         .name               = "Realtek DTMB RTL2836",
+#ifndef V4L2_ONLY_DVB_V5
         .type               = FE_OFDM,
+#endif
         .frequency_min      = 50000000,
         .frequency_max      = 862000000,
         .frequency_stepsize = 166667,

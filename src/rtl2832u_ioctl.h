@@ -1,6 +1,7 @@
 #ifndef __RTL2832U_IOCTL_H__
 #define __RTL2832U_IOCTL_H__
 
+#include <linux/version.h>
 #include "rtl2832u_fe.h"
 #include "rtl2832u_io.h"
 
@@ -33,6 +34,9 @@ enum FE_RW_DEMOD_DATA_TAG{
 #define FE_RW_DEMOD_INFO  _IOWR('o', 82,  struct rtl2832u_ioctl_info_struct)
 
 #define MAX_STD_I2C_BUF_NUM 131
+
+#define DVB_FE_IOCTL_PRE 0
+
 
 enum FE_STD_RW_CMD_TAG{
 	FE_RW_STD_WR=0,

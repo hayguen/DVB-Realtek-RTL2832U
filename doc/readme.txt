@@ -1,3 +1,10 @@
+DOCUMENTATION NOT YET UPDATED.
+
+"make" should build module in src directory using current kernel source.
+
+Kernel source currently required.  Update to specify v4l-dvb source to be added
+
+
 Driver Installation in Linux
 
 1.  Download "v4l-dvb-(version)" source code from http://linuxtv.org/. 

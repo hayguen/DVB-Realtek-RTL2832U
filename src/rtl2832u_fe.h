@@ -22,6 +22,16 @@
 #include "rtl2832u_io.h"
 #include <linux/param.h>
 
+#if (LINUX_VERSION_CODE >= KERNEL_VERSION(3,3,0)) || ((defined V4L2_VERSION) && (V4L2_VERSION >= 197120))
+/* all DVB frontend drivers now work directly with the DVBv5
+ * structure. This warrants that all drivers will be
+ * getting/setting frontend parameters on a consistent way, in
+ * order to avoid copying data from/to the DVBv3 structs
+ * without need.
+ */
+#define V4L2_ONLY_DVB_V5
+#endif
+
 #define  UPDATE_FUNC_ENABLE_2840      0
 #define  UPDATE_FUNC_ENABLE_2836      1
 #define  UPDATE_FUNC_ENABLE_2832      1
@@ -47,13 +57,19 @@ typedef enum{
 //3  state of total device 
 struct rtl2832_state {
 	struct dvb_frontend			frontend;
-	struct dvb_frontend_parameters	fep;	
+#ifndef V4L2_ONLY_DVB_V5
+	struct dvb_frontend_parameters	fep;
+#endif
 	struct dvb_usb_device*		d;
 
 	struct mutex					i2c_repeater_mutex;
 
-       unsigned long					current_frequency;	
-	enum fe_bandwidth			current_bandwidth;		
+       unsigned long					current_frequency;
+#ifdef V4L2_ONLY_DVB_V5
+	unsigned long			current_bandwidth_hz;
+#else
+	enum fe_bandwidth			current_bandwidth;
+#endif
 	   
 	RTL2832_TUNER_TYPE			tuner_type;
 	unsigned char					is_mt2266_nim_module_built;  //3 For close MT handle
