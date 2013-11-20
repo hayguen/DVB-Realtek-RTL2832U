@@ -16,6 +16,19 @@ Requires:
 * V4L-DVB Source & Kernel Headers
 
 
+Supported Cards (Confirmed)
+===========================
+
+	DIKOM USB-DVBT HD [ID 1b80:d394]
+	NILOX DVB-T Stick N15 [ID 1b80:d393]
+	TRUST 16738 [ID 0bda:2832]
+	TERRATEC Cinergy T Stick BLACK [ID 0ccd:00a9]
+	TERRATEC Cinergy T Stick+ [ID 0ccd:00d7]
+	TX Hollywood DVTB [ID 1d19:1101]
+	DIGIVOX mini II v3.0 [ID 1d19:1101]
+	Leadtek WinFast DTV2000 DS PLUS [ID 0413:6f12]
+
+
 To Build using Kernel Source
 ============================
 

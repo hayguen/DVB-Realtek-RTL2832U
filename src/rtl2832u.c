@@ -828,7 +828,7 @@ static struct usb_device_id rtl2832u_usb_table [] = {
 	{ USB_DEVICE(USB_VID_LEADTEK, USB_PID_LEADTEK_WARM_2)},		// 61
 
 	{ USB_DEVICE(USB_VID_YUAN, USB_PID_YUAN_WARM)},			//62
-        { USB_DEVICE(USB_VID_YUAN, USB_PID_YUAN_WARM80)},		//63
+    { USB_DEVICE(USB_VID_YUAN, USB_PID_YUAN_WARM80)},		//63
 	{ USB_DEVICE(USB_VID_YUAN, USB_PID_YUAN_WARM84)},	 	//64
 
 	{ USB_DEVICE(USB_VID_COMPRO, USB_PID_COMPRO_WARM_0620)},	// 65			
@@ -839,9 +839,9 @@ static struct usb_device_id rtl2832u_usb_table [] = {
 	{ USB_DEVICE(USB_VID_COMPRO, USB_PID_COMPRO_WARM_9580)},	// 70			
 	{ USB_DEVICE(USB_VID_COMPRO, USB_PID_COMPRO_WARM_9550)},	// 71			
 	{ USB_DEVICE(USB_VID_COMPRO, USB_PID_COMPRO_WARM_9540)},	// 72			
-	{ USB_DEVICE(USB_VID_COMPRO, USB_PID_COMPRO_WARM_9530)},	// 73  71																						//------rtl2832u_6th_properties(6)
-	{ USB_DEVICE(USB_VID_COMPRO,  USB_PID_COMPRO_WARM_9520)},	// 74
-	
+	{ USB_DEVICE(USB_VID_COMPRO, USB_PID_COMPRO_WARM_9530)},	// 73  71	//------rtl2832u_6th_properties(6)
+	{ USB_DEVICE(USB_VID_COMPRO, USB_PID_COMPRO_WARM_9520)},	// 74
+
 	{ USB_DEVICE(USB_VID_GOLDENBRIDGE, USB_PID_GOLDENBRIDGE_WARM)},	//75
 
 	{ USB_DEVICE(USB_VID_LEADTEK, USB_PID_WINFAST_DTV_DONGLE_MINI)},	// 76
@@ -849,6 +849,11 @@ static struct usb_device_id rtl2832u_usb_table [] = {
 	{ USB_DEVICE(USB_VID_TERRATEC, USB_PID_TERRATEC_00D3)},		// 77
 	{ USB_DEVICE(USB_VID_TERRATEC, USB_PID_TERRATEC_00D4)},		// 78
 	{ USB_DEVICE(USB_VID_TERRATEC, USB_PID_TERRATEC_00E0)},		// 79
+
+	{ USB_DEVICE(USB_VID_TWINTECH, USB_PID_UT30)}, // 80
+	{ USB_DEVICE(USB_VID_TWINTECH, USB_PID_UT40)}, // 81
+
+	{ USB_DEVICE(USB_VID_LEADTEK, USB_PID_WINFAST_PLUS)}, // 82
 
 	{ 0 },
 };
@@ -1549,7 +1554,7 @@ static struct dvb_usb_device_properties rtl2832u_7th_properties = {
 		.rc_interval  = RT_RC_POLLING_INTERVAL_TIME_MS,		
 	},
 	
-	.num_device_descs = 10,
+	.num_device_descs = 11,
 	.devices = {
 		{ .name = "DVB-T TV Stick",
 		  .cold_ids = { NULL, NULL },
@@ -1585,15 +1590,9 @@ static struct dvb_usb_device_properties rtl2832u_7th_properties = {
 		  .cold_ids = { NULL, NULL },
 		  .warm_ids = { &rtl2832u_usb_table[61], NULL },
 		},
-		{
-		  .name ="USB DVB-T Device",
-		  .cold_ids = { NULL, NULL },
-		  .warm_ids = { &rtl2832u_usb_table[62], NULL },
-		},
-		{ .name = "Leadtek WinFast DTV Dongle Mini",
-		  .cold_ids = { NULL, NULL },
-		  .warm_ids = { &rtl2832u_usb_table[76], NULL },
-		},
+		{ .name ="USB DVB-T Device", .cold_ids = { NULL, NULL }, .warm_ids = { &rtl2832u_usb_table[62], NULL }, },
+		{ .name = "Leadtek WinFast DTV Dongle Mini", .cold_ids = { NULL, NULL }, .warm_ids = { &rtl2832u_usb_table[76], NULL }, },
+		{ .name = "Leaktek WinFast DTV2000DS PLUS", .cold_ids = { NULL, NULL }, .warm_ids = { &rtl2832u_usb_table[82], NULL }, },
 
 		{ NULL },				
 	}

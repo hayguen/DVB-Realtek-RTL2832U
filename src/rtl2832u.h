@@ -113,7 +113,10 @@
 	#define	USB_VID_LEADTEK						0x0413
 #endif
 #define	USB_PID_LEADTEK_WARM_1					0x6680
-#define	USB_PID_LEADTEK_WARM_2					0x6F12
+#define	USB_PID_LEADTEK_WARM_2					0x6F11
+
+#define USB_PID_WINFAST_PLUS					0x6F12
+
 #ifndef  USB_VID_COMPRO
 	#define USB_VID_COMPRO						0x185B
 #endif 
@@ -128,6 +131,11 @@
 #define USB_PID_COMPRO_WARM_9530				0x9530
 #define USB_PID_COMPRO_WARM_9520				0x9520
 
+#ifndef	 USB_VID_TWINTECH						
+	#define USB_VID_TWINTECH					0x1B80
+#endif
+#define USB_PID_UT30							0xd393
+#define USB_PID_UT40							0xd3a4
 
 #define USB_PID_WINFAST_DTV_DONGLE_MINI				0x6a03
 
